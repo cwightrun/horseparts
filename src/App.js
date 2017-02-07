@@ -19,9 +19,6 @@ class App extends Component {
   }
 
   addValue(amount) {
-    Object.keys(this.state.counters).map(key => {
-      return this.value = 40;
-    });
   }
 
   componentWillMount() {

@@ -28,8 +28,8 @@ class Counter extends Component {
     return (
       <div className="counter">
         <div className="tally">{this.state.counter.value}</div>
-        <button className="plus" onClick={this.increment}>&#43;</button>
-        <button className="minus" onClick={this.decrement}>&minus;</button>
+        <button className="plus fa fa-plus" onClick={this.increment}></button>
+        <button className="minus fa fa-minus" onClick={this.decrement}></button>
       </div>
     );
   }
