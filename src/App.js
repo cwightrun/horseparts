@@ -2,19 +2,30 @@ import React, { Component } from 'react';
 import Counter from './components/Counter';
 import './App.css';
 
-
 class App extends Component {
-  constructor(props) {
-    super(props);
-    // this.tallyUp = this.tallyUp.bind(this);
-    // this.tallyDown = this.tallyDown.bind(this);
-    this.setEDH = this.setEDH.bind(this);
-    console.log("App constructor:", this.state);
-    this.state = {tally: 0};
+  constructor() {
+    super();
+    this.addCounter = this.addCounter.bind(this);
+    this.state = {
+      counters: {}
+    };
   }
 
-  setEDH() {
-    console.log(this.state);
+  addCounter(counter, value) {
+    const nextState = this.state.counters;
+    const timestamp = Date.now();
+    nextState[`counter-${timestamp}`] = counter;
+    this.setState({ nextState }); // set state
+  }
+
+  addValue(amount) {
+    Object.keys(this.state.counters).map(key => {
+      return this.value = 40;
+    });
+  }
+
+  componentWillMount() {
+    this.addCounter({value: 0});
   }
 
   render() {
@@ -24,13 +35,14 @@ class App extends Component {
           <h2>HORSE.PARTS</h2>
         </div>
         <div className="config">
-          <button onClick={this.setEDH}>EDH!</button>
+          <button onClick={this.addCounter}>Add Counter</button>
+          <button onClick={this.addValue(40)}>Add Value</button>
         </div>
         <div className="counters">
-          <Counter id="counter1" tallyUp={this.props.tallyUp} tallyDown={this.props.tallyDown} tally={this.state.tally} />
-          <Counter id="counter2" tallyUp={this.props.tallyUp} tallyDown={this.props.tallyDown} tally={this.state.tally} />
-          <Counter id="counter3" tallyUp={this.props.tallyUp} tallyDown={this.props.tallyDown} tally={this.state.tally} />
-          <Counter id="counter4" tallyUp={this.props.tallyUp} tallyDown={this.props.tallyDown} tally={this.state.tally} />
+          {
+            Object.keys(this.state.counters)
+              .map(key => <Counter key={key} index={key} value="0" increment={this.increment} decrement={this.decrement} />)
+          }
         </div>
       </div>
     );
