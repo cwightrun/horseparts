@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.increment = this.increment.bind(this);
-  //   this.decrement = this.decrement.bind(this);
-  //   this.state = {
-  //     counter: {
-  //       value: 0
-  //     }
-  //   }
-  // }
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = { value: this.props.value }
+  }
+
+  handleChange(dir) {
+    const counter = this.state;
+    if (dir == 'up') {
+      counter.value++;
+    } else {
+      counter.value--;
+    }
+    let newVal = counter.value;
+    this.setState({ newVal });
+  }
 
   render() {
     return (
-      <div className="counter">
-        <div className="tally">{this.props.value}</div>
-        <button className="plus fa fa-plus" onClick={this.props.increment}></button>
-        <button className="minus fa fa-minus" onClick={this.props.decrement}></button>
-        <input className="remove-checkbox" type="checkbox" />
+      <div className={`counter ${this.state.rotate ? 'rotated' : 'nope'}`}>
+        <div className="tally">{this.state.value}</div>
+        <button className="plus fa fa-plus" onClick={() => this.handleChange('up')}></button>
+        <button className="minus fa fa-minus" onClick={() => this.handleChange('down')}></button>
+        <input className="remove-checkbox fa fa-rotate-right" type="checkbox" />
       </div>
     );
   }

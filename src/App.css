@@ -78,3 +78,20 @@ button.minus {
   box-shadow: 0 0 10px rgba(255, 255, 255, 1);
 }
 
+.remove-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  display: block;
+  clear: both;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  color: #FFF;
+  transition: all 300ms;
+}
+
+.remove-checkbox:checked {
+  transform: rotate(180deg);
+}
