@@ -7,26 +7,22 @@ class App extends Component {
     super();
     this.addCounter = this.addCounter.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    // this.decrement = this.decrement.bind(this);
-    this.state = {
-      counters: [
-        { key: 0, value: 34 },
-        { key: 1, value: 45 },
-        { key: 2, value: 56 },
-      ]
-    };
+    this.removeCounter = this.removeCounter.bind(this);
+    this.state = {counters: [{ key: 0, value: 0 }]};
   }
 
   addCounter(value) {
-    let counter = { value: value }        // Data for the new counter
     const counters = this.state.counters; // is an array
+    let key = counters.length;
+    let counter = { key: key, value: value }        // Data for the new counter
     counters.push(counter);               // add the new counter to the Counters array
     this.setState({ counters }); // set state of Counters to be the updated / new Counters
-    // const nextState = { counters: [{...counters}, {counter}]};
-    //   console.log('nextState', nextState);
-    //   console.log('state', this.state);
-    // this.setState({ nextState }); // set state
-    // console.log('addCounter nextState', nextState);
+  }
+
+  removeCounter() {
+    const counters = this.state.counters;
+    counters.pop();
+    this.setState({ counters });
   }
 
   addValue(amount) {
@@ -36,7 +32,6 @@ class App extends Component {
   }
 
   handleChange(key, dir) {
-    console.log('key', key);
     const counters = this.state.counters;
     const counter = counters[key];
     if (dir == 'up') {
@@ -64,7 +59,8 @@ class App extends Component {
           <h2>HORSE.PARTS</h2>
         </div>
         <div className="config">
-          <button onClick={() => this.addCounter(22)}>Add Counter</button>
+          <button onClick={() => this.addCounter(0)}>Add</button>
+          <button onClick={() => this.removeCounter()}>Remove</button>
           <button onClick={() => this.addValue(40)}>EDH</button>
         </div>
         <div className="counters">
@@ -74,7 +70,8 @@ class App extends Component {
               key={counter.key}
               value={counter.value}
               increment={() => this.handleChange(counter.key, 'up')}
-              decrement={() => this.handleChange(counter.key, 'down')} />)
+              decrement={() => this.handleChange(counter.key, 'down')}
+            />)
           }
         </div>
       </div>

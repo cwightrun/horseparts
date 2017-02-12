@@ -18,6 +18,7 @@ class Counter extends Component {
         <div className="tally">{this.props.value}</div>
         <button className="plus fa fa-plus" onClick={this.props.increment}></button>
         <button className="minus fa fa-minus" onClick={this.props.decrement}></button>
+        <input className="remove-checkbox" type="checkbox" />
       </div>
     );
   }
